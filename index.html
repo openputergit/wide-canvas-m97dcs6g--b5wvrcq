@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Property Cost Calculator</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+</head>
+<body class="bg-gradient-to-br from-teal-500 to-blue-500 min-h-screen p-4 md:p-8">
+    <div class="max-w-4xl mx-auto bg-white rounded-xl shadow-2xl p-6">
+        <h1 class="text-3xl font-bold text-center mb-8 text-gray-800">Property Cost Calculator</h1>
+        
+        <div class="overflow-x-auto">
+            <table class="w-full text-left">
+                <thead>
+                    <tr class="bg-gray-100">
+                        <th class="px-4 py-3 rounded-tl-lg">Flat Price</th>
+                        <th class="px-4 py-3">Brokerage (30%)</th>
+                        <th class="px-4 py-3">Booking Fee</th>
+                        <th class="px-4 py-3 rounded-tr-lg">Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="px-4 py-3">
+                            <input type="number" id="flatPrice" placeholder="Enter flat price" 
+                                   class="w-full p-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-400">
+                        </td>
+                        <td class="px-4 py-3">
+                            <input type="number" id="brokerage" readonly 
+                                   class="w-full p-2 border rounded bg-gray-50">
+                        </td>
+                        <td class="px-4 py-3">
+                            <input type="number" id="bookingFee" value="199" readonly 
+                                   class="w-full p-2 border rounded bg-gray-50">
+                        </td>
+                        <td class="px-4 py-3">
+                            <input type="number" id="total" readonly 
+                                   class="w-full p-2 border rounded bg-gray-50 font-bold text-green-600">
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('flatPrice').addEventListener('input', calculateTotal);
+
+        function calculateTotal() {
+            const flatPrice = parseFloat(document.getElementById('flatPrice').value) || 0;
+            const brokerage = flatPrice * 0.30;
+            const bookingFee = 199;
+            const total = flatPrice + brokerage + bookingFee;
+
+            document.getElementById('brokerage').value = brokerage.toFixed(2);
+            document.getElementById('total').value = total.toFixed(2);
+        }
+    </script>
+<script>document.body.addEventListener('wheel', e => { if (!e.ctrlKey) return; e.preventDefault(); return }, { passive: false })</script>
+	</body>
+</html>
